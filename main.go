@@ -18,7 +18,7 @@ func main() {
 
 	log.Printf("Authorized on account %s", bot.Self.UserName)
 
-	_, err = bot.SetWebhook(tgbotapi.NewWebhook("https://denisov.now.sh"))
+	_, err = bot.SetWebhook(tgbotapi.NewWebhook("https://telegram-bot-andrey.now.sh"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -30,12 +30,13 @@ func main() {
 		log.Printf("[Telegram callback failed]%s", info.LastErrorMessage)
 	}
 	updates := bot.ListenForWebhook("/")
+
 	go http.ListenAndServe("0.0.0.0:8443", nil)
 
 	for update := range updates {
 		log.Printf("%+v\n %s\n", update, update.Message.Text)
 
-		msg := tgbotapi.NewMessage(update.Message.Chat.ID, update.Message.Text)
+		msg := tgbotapi.NewMessage(update.Message.Chat.ID, "ok")
 		msg.ReplyToMessageID = update.Message.MessageID
 
 		bot.Send(msg)

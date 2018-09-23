@@ -1,11 +1,25 @@
 Telegram bot with Docker hosted on zeit (https://zeit.co) 
 
-```
-now rm -y now-test
-now --public -e TELEGRAM_BOT_TOKEN=...
-now alias https://now-test-ohbvcbnjer.now.sh denisov
-now logs -f denisov.now.sh
-```
+## Pre-deploy (один раз)
 
-- как делать только 1 деплой и 1 инстанс (или как его). Чтобы был только 1 экземпляр всегда?
-- как задавать алиас при деплое?
+Сохранить Telegram bot token в secret
+
+    now secret add telegram_bot_token xxxxx
+
+## Deploy
+
+    ./deploy.sh
+
+#### Логи
+
+    now logs -f telegram-bot-andrey.now.sh
+
+#### Удалить старые версии
+
+```bash
+# удалить совсем всё
+now rm -y now-test
+
+# удалить то что без алиасов (не-боевые деплойменты)
+now rm now-test --safe --yes
+```

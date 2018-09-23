@@ -1,5 +1,6 @@
 {
-  "features": {
-    "cloud": "v2"
+  "alias": "telegram-bot-andrey.now.sh",
+  "env": {
+    "TELEGRAM_BOT_TOKEN": "@telegram_bot_token"
   }
 }

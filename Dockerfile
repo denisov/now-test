@@ -10,7 +10,7 @@ RUN apk --update add ca-certificates
 RUN CGO_ENABLED=0 go build -ldflags "-s -w" -o main
 
 FROM scratch
-COPY --from=base /go/src/app/main /go-http-microservice
+COPY --from=base /go/src/app/main /go-telegram-bot
 COPY --from=base /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 EXPOSE 8443
-CMD ["/go-http-microservice"]
+CMD ["/go-telegram-bot"]
